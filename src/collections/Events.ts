@@ -1,9 +1,11 @@
 import { CollectionConfig } from "payload/types";
+import { createEventHook } from "../hooks/createEvent";
 
 const Events: CollectionConfig = {
 	slug: "events",
 	admin: {
 		useAsTitle: "title",
+		disableDuplicate: false,
 	},
 	fields: [
 		{ name: "title", type: "text", required: true },
@@ -34,6 +36,8 @@ const Events: CollectionConfig = {
 		{ name: "sold_out", type: "checkbox", label: "Sold out" },
 		{ name: "ticketing_url", type: "text" },
 	],
+	hooks: {
+		afterChange: [createEventHook],
+	},
 };
-
 export default Events;
