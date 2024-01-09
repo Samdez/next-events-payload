@@ -11,28 +11,10 @@ import Events from "./collections/Events";
 import Medias from "./collections/Media";
 import Locations from "./collections/Locations";
 
-console.log("DIR", path.resolve(__dirname, "mocks/modules.js"));
-console.log("DIR", path.resolve(__dirname, "hooks/createEvent"));
-
-const mockModulePath = path.resolve(__dirname, "mocks/modules.js");
-const fullFilePath = path.resolve(__dirname, "hooks/createEvent");
-
 export default buildConfig({
 	admin: {
 		user: Users.slug,
 		bundler: webpackBundler(),
-		webpack: config => {
-			return {
-				...config,
-				resolve: {
-					...config.resolve,
-					alias: {
-						...config.resolve.alias,
-						[fullFilePath]: mockModulePath,
-					},
-				},
-			};
-		},
 	},
 	editor: slateEditor({}),
 	collections: [Users, Events, Medias, Locations],

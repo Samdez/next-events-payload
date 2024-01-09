@@ -1,8 +1,10 @@
 import { CollectionConfig } from "payload/types";
-import { createEventHook } from "../hooks/createEvent";
+import createEventHook from "../hooks/createEvent";
+import deleteEventHook from "../hooks/deleteEvent";
 
 const Events: CollectionConfig = {
 	slug: "events",
+	access: { read: () => true },
 	admin: {
 		useAsTitle: "title",
 		disableDuplicate: false,
@@ -38,6 +40,7 @@ const Events: CollectionConfig = {
 	],
 	hooks: {
 		afterChange: [createEventHook],
+		afterDelete: [deleteEventHook],
 	},
 };
 export default Events;

@@ -1,12 +1,8 @@
-import { CollectionAfterChangeHook } from "payload/types";
+import { CollectionAfterDeleteHook } from "payload/types";
 
-const createEventHook: CollectionAfterChangeHook = async ({
-	operation,
-	doc,
-}) => {
-	if (!(operation === "create")) return;
+const deleteEventHook: CollectionAfterDeleteHook = async ({ doc }) => {
 	const res = await fetch("http://localhost:3001/api/webhooks/payload", {
-		method: "POST",
+		method: "DELETE",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ eventId: doc.id }),
 	});
@@ -15,4 +11,4 @@ const createEventHook: CollectionAfterChangeHook = async ({
 	}
 };
 
-export default createEventHook;
+export default deleteEventHook;
