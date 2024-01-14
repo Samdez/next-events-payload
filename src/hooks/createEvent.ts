@@ -5,7 +5,7 @@ const createEventHook: CollectionAfterChangeHook = async ({
 	doc,
 }) => {
 	if (!(operation === "create")) return;
-	const res = await fetch("http://localhost:3001/api/webhooks/payload", {
+	const res = await fetch(`${process.env.FRONTEND_URL}/api/webhooks/payload`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ eventId: doc.id }),
