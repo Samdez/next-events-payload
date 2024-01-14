@@ -4,7 +4,12 @@ import deleteEventHook from "../hooks/deleteEvent";
 
 const Events: CollectionConfig = {
 	slug: "events",
-	access: { read: () => true },
+	access: {
+		read: () => true,
+		create: () => true,
+		update: () => true,
+		delete: () => true,
+	},
 	admin: {
 		useAsTitle: "title",
 		disableDuplicate: false,
