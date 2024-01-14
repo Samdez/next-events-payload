@@ -11,6 +11,20 @@ import Events from "./collections/Events";
 import Medias from "./collections/Media";
 import Locations from "./collections/Locations";
 
+import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
+import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
+
+const adapter = s3Adapter({
+	config: {
+		credentials: {
+			accessKeyId: process.env.S3_ACCESS_KEY_ID,
+			secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+		},
+		region: process.env.S3_REGION,
+	},
+	bucket: process.env.S3_BUCKET,
+});
+
 export default buildConfig({
 	admin: {
 		user: Users.slug,
@@ -24,7 +38,16 @@ export default buildConfig({
 	graphQL: {
 		schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
 	},
-	plugins: [payloadCloud()],
+	plugins: [
+		payloadCloud(),
+		cloudStorage({
+			collections: {
+				medias: {
+					adapter, // see docs for the adapter you want to use
+				},
+			},
+		}),
+	],
 	db: mongooseAdapter({
 		url: process.env.DATABASE_URI,
 	}),
