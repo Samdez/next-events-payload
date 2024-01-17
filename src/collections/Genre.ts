@@ -1,14 +1,9 @@
 import { CollectionConfig } from "payload/types";
 
-const Medias: CollectionConfig = {
-	slug: "medias",
+const Genres: CollectionConfig = {
+	slug: "genres",
 	access: {
 		read: () => true,
-	},
-	upload: {
-		staticURL: "/media",
-		staticDir: "media",
-		mimeTypes: ["image/*"],
 	},
 	fields: [
 		{
@@ -19,4 +14,4 @@ const Medias: CollectionConfig = {
 	],
 };
 
-export default Medias;
+export default Genres;

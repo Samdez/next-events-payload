@@ -6,9 +6,6 @@ const Events: CollectionConfig = {
 	slug: "events",
 	access: {
 		read: () => true,
-		create: () => true,
-		update: () => true,
-		delete: () => true,
 	},
 	admin: {
 		useAsTitle: "title",
@@ -19,6 +16,11 @@ const Events: CollectionConfig = {
 		{
 			name: "description",
 			type: "text",
+		},
+		{
+			name: "rich_text_description",
+			label: "Rich text description",
+			type: "richText",
 		},
 		{
 			name: "date",
@@ -39,7 +41,8 @@ const Events: CollectionConfig = {
 			required: true,
 			relationTo: "locations",
 		},
-		{ name: "price", type: "number" },
+		{ name: "genre", type: "relationship", relationTo: "genres" },
+		{ name: "price", type: "text" },
 		{ name: "sold_out", type: "checkbox", label: "Sold out" },
 		{ name: "ticketing_url", type: "text" },
 	],

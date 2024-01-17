@@ -12,6 +12,7 @@ export interface Config {
     events: Event;
     medias: Media;
     locations: Location;
+    genres: Genre;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -34,10 +35,16 @@ export interface Event {
   id: string;
   title: string;
   description?: string | null;
+  rich_text_description?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   date: string;
   image?: string | Media | null;
   location: string | Location;
-  price?: number | null;
+  genre?: (string | null) | Genre;
+  price?: string | null;
   sold_out?: boolean | null;
   ticketing_url?: string | null;
   updatedAt: string;
@@ -58,6 +65,12 @@ export interface Media {
 export interface Location {
   id: string;
   name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Genre {
+  id: string;
+  title: string;
   updatedAt: string;
   createdAt: string;
 }
