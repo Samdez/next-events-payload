@@ -5,9 +5,10 @@ const Genres: CollectionConfig = {
 	access: {
 		read: () => true,
 	},
+	admin: { useAsTitle: "name" },
 	fields: [
 		{
-			name: "title",
+			name: "name",
 			type: "text",
 			required: true,
 		},
