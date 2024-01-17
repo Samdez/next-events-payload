@@ -41,7 +41,12 @@ const Events: CollectionConfig = {
 			required: true,
 			relationTo: "locations",
 		},
-		{ name: "genre", type: "relationship", relationTo: "genres" },
+		{
+			name: "genre",
+			type: "relationship",
+			relationTo: "genres",
+			hasMany: true,
+		},
 		{ name: "price", type: "text" },
 		{ name: "sold_out", type: "checkbox", label: "Sold out" },
 		{ name: "ticketing_url", type: "text" },
