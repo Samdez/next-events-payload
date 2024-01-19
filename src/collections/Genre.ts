@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
 
-const Genres: CollectionConfig = {
-	slug: "genres",
+const Categories: CollectionConfig = {
+	slug: "categories",
 	access: {
 		read: () => true,
 	},
@@ -15,4 +15,4 @@ const Genres: CollectionConfig = {
 	],
 };
 
-export default Genres;
+export default Categories;

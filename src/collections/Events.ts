@@ -22,6 +22,7 @@ const Events: CollectionConfig = {
 			type: "date",
 			required: true,
 		},
+		{ name: "time", type: "text" },
 		{
 			name: "image",
 			type: "upload",
@@ -37,10 +38,14 @@ const Events: CollectionConfig = {
 			relationTo: "locations",
 		},
 		{
-			name: "genre",
+			name: "category",
 			type: "relationship",
-			relationTo: "genres",
+			relationTo: "categories",
 			hasMany: true,
+		},
+		{
+			name: "genres",
+			type: "text",
 		},
 		{ name: "price", type: "text" },
 		{ name: "sold_out", type: "checkbox", label: "Sold out" },
