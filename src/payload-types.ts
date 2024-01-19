@@ -35,15 +35,10 @@ export interface Event {
   id: string;
   title: string;
   description?: string | null;
-  rich_text_description?:
-    | {
-        [k: string]: unknown;
-      }[]
-    | null;
   date: string;
   image?: string | Media | null;
   location: string | Location;
-  genre?: (string | null) | Genre;
+  genre?: (string | Genre)[] | null;
   price?: string | null;
   sold_out?: boolean | null;
   ticketing_url?: string | null;
@@ -70,7 +65,7 @@ export interface Location {
 }
 export interface Genre {
   id: string;
-  title: string;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }

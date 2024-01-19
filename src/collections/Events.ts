@@ -18,11 +18,6 @@ const Events: CollectionConfig = {
 			type: "text",
 		},
 		{
-			name: "rich_text_description",
-			label: "Rich text description",
-			type: "richText",
-		},
-		{
 			name: "date",
 			type: "date",
 			required: true,
