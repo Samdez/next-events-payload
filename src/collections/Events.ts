@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import createEventHook from "../hooks/createEvent";
 import deleteEventHook from "../hooks/deleteEvent";
+import { slugifyString } from "../utils";
 
 const Events: CollectionConfig = {
 	slug: "events",
@@ -21,6 +22,7 @@ const Events: CollectionConfig = {
 			name: "date",
 			type: "date",
 			required: true,
+			index: true,
 		},
 		{ name: "time", type: "text" },
 		{
@@ -42,6 +44,7 @@ const Events: CollectionConfig = {
 			type: "relationship",
 			relationTo: "categories",
 			hasMany: true,
+			index: true,
 		},
 		{
 			name: "genres",
@@ -50,6 +53,19 @@ const Events: CollectionConfig = {
 		{ name: "price", type: "text" },
 		{ name: "sold_out", type: "checkbox", label: "Sold out" },
 		{ name: "ticketing_url", type: "text" },
+		{
+			name: "slug",
+			type: "text",
+			hooks: {
+				beforeValidate: [
+					({ req: { payload }, data }) => {
+						if (payload) {
+							return slugifyString(data.title);
+						}
+					},
+				],
+			},
+		},
 	],
 	hooks: {
 		afterChange: [createEventHook],

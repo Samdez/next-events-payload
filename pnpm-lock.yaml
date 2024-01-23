@@ -47,6 +47,9 @@ dependencies:
   payload:
     specifier: ^2.0.0
     version: 2.6.0(typescript@4.9.5)(webpack@5.89.0)
+  slugify:
+    specifier: ^1.6.6
+    version: 1.6.6
 
 devDependencies:
   '@types/express':
@@ -8565,6 +8568,11 @@ packages:
       immer: 9.0.21
       is-plain-object: 5.0.0
       tiny-warning: 1.0.3
+    dev: false
+
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
     dev: false
 
   /smart-buffer@4.2.0:

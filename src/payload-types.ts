@@ -12,7 +12,7 @@ export interface Config {
     events: Event;
     medias: Media;
     locations: Location;
-    genres: Genre;
+    categories: Category;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -36,12 +36,15 @@ export interface Event {
   title: string;
   description?: string | null;
   date: string;
+  time?: string | null;
   image?: string | Media | null;
   location: string | Location;
-  genre?: (string | Genre)[] | null;
+  category?: (string | Category)[] | null;
+  genres?: string | null;
   price?: string | null;
   sold_out?: boolean | null;
   ticketing_url?: string | null;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -63,9 +66,10 @@ export interface Location {
   updatedAt: string;
   createdAt: string;
 }
-export interface Genre {
+export interface Category {
   id: string;
   name: string;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }

@@ -13,7 +13,7 @@ import Locations from "./collections/Locations";
 
 import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
-import Genres from "./collections/Genre";
+import Categories from "./collections/Categories";
 
 const adapter = s3Adapter({
 	config: {
@@ -33,7 +33,7 @@ export default buildConfig({
 		bundler: webpackBundler(),
 	},
 	editor: slateEditor({}),
-	collections: [Users, Events, Medias, Locations, Genres],
+	collections: [Users, Events, Medias, Locations, Categories],
 	typescript: {
 		outputFile: path.resolve(__dirname, "payload-types.ts"),
 	},
