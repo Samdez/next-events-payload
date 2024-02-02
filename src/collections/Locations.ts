@@ -21,6 +21,10 @@ const Locations: CollectionConfig = {
 			type: "text",
 		},
 		{
+			name: "city",
+			type: "text",
+		},
+		{
 			name: "image",
 			type: "upload",
 			relationTo: "medias",

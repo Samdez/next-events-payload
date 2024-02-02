@@ -63,6 +63,15 @@ export interface Media {
 export interface Location {
   id: string;
   name: string;
+  description?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  place_id?: string | null;
+  city?: string | null;
+  image?: string | Media | null;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
