@@ -9,6 +9,18 @@ const Medias: CollectionConfig = {
 		staticURL: "/media",
 		staticDir: "media",
 		mimeTypes: ["image/*"],
+		formatOptions: {
+			format: "webp",
+		},
+		imageSizes: [
+			{
+				width: 310,
+				height: 176,
+				position: "centre",
+				name: "card",
+				formatOptions: { format: "webp" },
+			},
+		],
 	},
 	fields: [
 		{

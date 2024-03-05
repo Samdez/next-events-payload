@@ -36,8 +36,18 @@ const Events: CollectionConfig = {
 		{
 			name: "location",
 			type: "relationship",
-			required: true,
+			required: false,
 			relationTo: "locations",
+			admin: {
+				condition: data => !data.location_alt,
+			},
+		},
+		{
+			name: "location_alt",
+			type: "text",
+			admin: {
+				condition: data => !data.location,
+			},
 		},
 		{
 			name: "category",
