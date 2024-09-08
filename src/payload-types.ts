@@ -39,6 +39,7 @@ export interface Event {
   time?: string | null;
   image?: string | Media | null;
   location?: (string | null) | Location;
+  location_alt?: string | null;
   category?: (string | Category)[] | null;
   genres?: string | null;
   price?: string | null;
@@ -80,7 +81,21 @@ export interface Location {
     | null;
   place_id?: string | null;
   city?:
-    | ('biarritz' | 'bayonne' | 'anglet' | 'capbreton' | 'hossegor' | 'seignosse' | 'saint_jean_de_luz' | 'hendaye')
+    | (
+        | 'Biarritz'
+        | 'Bayonne'
+        | 'Anglet'
+        | 'Capbreton'
+        | 'Hossegor'
+        | 'Seignosse'
+        | 'Saint Jean de Luz'
+        | 'Hendaye'
+        | 'Bidart'
+        | 'Guethary'
+        | 'Angresse'
+        | 'Labenn'
+        | 'Soustons'
+      )
     | null;
   image?: string | Media | null;
   slug?: string | null;
