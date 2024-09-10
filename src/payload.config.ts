@@ -14,6 +14,7 @@ import Locations from "./collections/Locations";
 import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import Categories from "./collections/Categories";
+import { ExportComponent } from "./components/Export";
 
 const adapter = s3Adapter({
 	config: {
@@ -31,6 +32,9 @@ export default buildConfig({
 	admin: {
 		user: Users.slug,
 		bundler: webpackBundler(),
+		components: {
+			afterDashboard: [ExportComponent],
+		},
 	},
 	editor: slateEditor({}),
 	collections: [Users, Events, Medias, Locations, Categories],
