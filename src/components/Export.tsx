@@ -1,7 +1,8 @@
-import * as React from "react";
-import { startOfWeek, endOfWeek } from "date-fns";
-import qs from "qs";
+import { endOfWeek, startOfWeek } from "date-fns";
+import { useConfig } from "payload/components/utilities";
 import type { Event } from "payload/generated-types";
+// biome-ignore lint/style/useImportType: <explanation>
+import * as React from "react";
 
 function getDay(date: Date) {
 	switch (date.getDay()) {
@@ -41,49 +42,41 @@ export const ExportComponent: React.FC = () => {
 
 	const fetchOptions = async () => {
 		try {
-			const query = {
-				and: [
-					{
-						date: {
-							greater_than_equal: startOfWeek(new Date(), { weekStartsOn: 1 }),
-						},
-					},
-					{
-						date: {
-							less_than_equal: endOfWeek(new Date(), { weekStartsOn: 1 }),
-						},
-					},
-				],
-			};
-			const stringifiedQuery = qs.stringify(
-				{
-					where: query,
-				},
-				{ addQueryPrefix: true }
+			const startDate = startOfWeek(new Date(), {
+				weekStartsOn: 1,
+			}).toISOString();
+			const endDate = endOfWeek(new Date(), { weekStartsOn: 1 }).toISOString();
+
+			const query = `where[and][0][date][greater_than_equal]=${startDate}&where[and][1][date][less_than_equal]=${endDate}&sort=date`;
+			const res = await fetch(
+				`https://next-events-payload-production.up.railway.app/api/events?${query}`
 			);
 
-			const res = await fetch(
-				`${process.env.PAYLOAD_URL}/api/events${stringifiedQuery}&sort=date`
-			);
-			const parsed = await res.json();
-			const csvData = new Blob([convertToCSV(parsed.docs)], {
-				type: "text/csv",
-			});
-			const csvURL = URL.createObjectURL(csvData);
-			const link = document.createElement("a");
-			link.href = csvURL;
-			link.download = `events.csv`;
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
+			if (!res.ok) throw new Error("Failed to fetch events");
+
+			const data = await res.json();
+
+			if (data?.docs) {
+				const csvData = new Blob([convertToCSV(data.docs)], {
+					type: "text/csv",
+				});
+				const csvURL = URL.createObjectURL(csvData);
+				const link = document.createElement("a");
+				link.href = csvURL;
+				link.download = "events.csv";
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			}
 		} catch (error) {
 			console.error("Error fetching data:", error);
+		} finally {
 		}
 	};
 
 	return (
 		<div>
-			<button onClick={() => fetchOptions()}>
+			<button onClick={fetchOptions} type="button">
 				Download this week's events
 			</button>
 		</div>
