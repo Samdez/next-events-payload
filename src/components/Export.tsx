@@ -34,7 +34,7 @@ export const ExportComponent: React.FC = () => {
 					: event.location.name
 				: event.location_alt;
 
-			str += `${event.title},${getDay(new Date(event.date))},${event.time},${location},${event.genres},${event.price === "0" ? "Gratuit" : event.price}\r\n`;
+			str += `${event.title},${getDay(new Date(event.date))},${location} - ${event.time},${event.genres},${event.price === "0" ? "Gratuit" : `${event.price}€`}\r\n`;
 		}
 
 		return str;
