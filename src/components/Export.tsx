@@ -1,5 +1,4 @@
-import { endOfWeek, startOfWeek } from "date-fns";
-import { useConfig } from "payload/components/utilities";
+import { addDays, endOfDay, endOfWeek, startOfWeek } from "date-fns";
 import type { Event } from "payload/generated-types";
 // biome-ignore lint/style/useImportType: <explanation>
 import * as React from "react";
@@ -45,9 +44,11 @@ export const ExportComponent: React.FC = () => {
 			const startDate = startOfWeek(new Date(), {
 				weekStartsOn: 1,
 			}).toISOString();
-			const endDate = endOfWeek(new Date(), { weekStartsOn: 1 }).toISOString();
+			const endDate = endOfWeek(new Date(), {
+				weekStartsOn: 1,
+			}).toISOString();
 
-			const query = `where[and][0][date][greater_than_equal]=${startDate}&where[and][1][date][less_than_equal]=${endDate}&sort=date`;
+			const query = `where[and][0][date][greater_than_equal]=${startDate}&where[and][1][date][less_than_equal]=${endDate}&sort=date&limit=100`;
 			const res = await fetch(
 				`https://next-events-payload-production.up.railway.app/api/events?${query}`
 			);
