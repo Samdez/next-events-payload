@@ -76,9 +76,5 @@ const Events: CollectionConfig = {
 			},
 		},
 	],
-	hooks: {
-		afterChange: [createEventHook],
-		afterDelete: [deleteEventHook],
-	},
 };
 export default Events;
