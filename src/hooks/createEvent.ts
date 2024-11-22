@@ -4,7 +4,7 @@ const createEventHook: CollectionAfterChangeHook = async ({
 	operation,
 	doc,
 }) => {
-	if (!(operation === "create")) return;
+	if (!(operation === "create" || operation === "update")) return;
 	const res = await fetch(`${process.env.FRONTEND_URL}/api/webhooks/payload`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },

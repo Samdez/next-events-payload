@@ -15,6 +15,7 @@ import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import Categories from "./collections/Categories";
 import { ExportComponent } from "./components/Export";
+import { ImagePlaceholder } from "./globals/ImagePlaceholder";
 
 const adapter = s3Adapter({
 	config: {
@@ -38,6 +39,7 @@ export default buildConfig({
 	},
 	editor: slateEditor({}),
 	collections: [Users, Events, Medias, Locations, Categories],
+	globals: [ImagePlaceholder],
 	typescript: {
 		outputFile: path.resolve(__dirname, "payload-types.ts"),
 	},
